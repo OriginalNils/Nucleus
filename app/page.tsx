@@ -2,6 +2,7 @@
 
 import { defaultDashboard } from '@/config/dashboard';
 import ClockComponent from '@/components/widgets/clock';
+import WeatherComponent from '@/components/widgets/weather';
 
 // Hier werden später die anderen Widgets importiert
 // import WeatherComponent from ...
@@ -40,7 +41,7 @@ export default function Home() {
 
               {widget.type === 'weather' && (
                 <div className="flex items-center justify-center h-full text-zinc-500 text-sm font-mono">
-                  🚧 Weather: {widget.options.city}
+                  <WeatherComponent options={widget.options as any} />
                 </div>
               )}
 
