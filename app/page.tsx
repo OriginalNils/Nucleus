@@ -3,6 +3,7 @@
 import { defaultDashboard } from '@/config/dashboard';
 import ClockComponent from '@/components/widgets/clock';
 import WeatherComponent from '@/components/widgets/weather';
+import BookmarkComponent from '@/components/widgets/bookmarks';
 
 // Hier werden später die anderen Widgets importiert
 // import WeatherComponent from ...
@@ -47,7 +48,9 @@ export default function Home() {
 
               {widget.type === 'bookmarks' && (
                 <div className="flex items-center justify-center h-full text-zinc-500 text-sm font-mono">
-                  🚧 Bookmarks ({widget.options.items?.length} links)
+                  {widget.type === 'bookmarks' && (
+                    <BookmarkComponent options={widget.options as any} />
+                    )}
                 </div>
               )}
 

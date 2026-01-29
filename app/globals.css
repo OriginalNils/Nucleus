@@ -2,8 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Optional: Damit der Hintergrund immer dunkel ist */
-body {
-  background-color: #000;
-  color: #fff;
+@layer base {
+  :root {
+    /* Pure Grayscale (Kein Blaustich) */
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+ 
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+ 
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+ 
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+ 
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+ 
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+ 
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    
+    --radius: 0.75rem;
+  }
+ 
+  /* HIER WAR DER FEHLER: */
+  /* Statt '@apply border-border' nutzen wir natives CSS. */
+  /* Das versteht der Browser immer, egal was Tailwind macht. */
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+  }
+
+  .scrollbar-hide {
+      -ms-overflow-style: none; 
+      scrollbar-width: none; 
+  }
 }
